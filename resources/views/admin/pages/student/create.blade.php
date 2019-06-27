@@ -1,103 +1,118 @@
 @extends('admin.templates.default')
 
-@section('title', 'Adicionar administrador')
+@section('title', 'Adicionar Ex-Aluno')
 
 @section('description', 'Descrição')
 
 @section('content')
 
-  <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <div class="row">
-        <div class="col-sm-6">
-          <h1>Adicionar administrador</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <h1>Adicionar Ex-Aluno</h1>
+            </div>
         </div>
-      </div>
     </section>
 
     @if(session()->has('success'))
-      <section class="content-header">
+    <section class="content-header">
         <!-- Main row -->
         <div class="row">
-          <!-- Left col -->
-          <section class="col-sm-12">
-            <div class="alert alert-success alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              {{session('success')}}
-            </div>
-          </section>
+            <!-- Left col -->
+            <section class="col-sm-12">
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{session('success')}}
+                </div>
+            </section>
         </div>
-      </section>
+    </section>
     @endisset
 
     @if ($errors->any())
-      <div class="content-header">
+    <div class="content-header">
         @foreach ($errors->all() as $error)
         <div class="row">
-          <div class="col-sm-12">
-            <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{ $error }}
+            <div class="col-sm-12">
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ $error }}
+                </div>
             </div>
-          </div>
         </div>
         @endforeach
-      </div>
+    </div>
     @endif
 
     <!-- Main content -->
     <section class="content">
-      <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-6">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Dados</h3>
-            </div>
-            <form method="POST" action="{{route('admin.admin.store')}}">
-              {{csrf_field()}}
-              <div class="box-body">
-                <div class="form-group row box-nome">
-                  <div class="col-xs-12">
-                    <label for="name">Nome</label>
-                    <input type="text" name="name" class="form-control" id="name" value="{{old('name')}}">
-                  </div>
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Dados</h3>
+                    </div>
+                    <form method="POST" action="{{route('admin.student.store')}}" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="box-body">
+                            <div class="form-group row box-nome">
+                                <div class="col-xs-6">
+                                    <label for="name">Nome</label>
+                                    <input type="text" name="name" class="form-control" value="{{old('name')}}">
+                                </div>
+                                <div class="col-xs-6">
+                                    <label for="email">E-mail</label>
+                                    <input type="email" name="email" class="form-control" value="{{old('email')}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-4">
+                                    <label for="phone">Telefone</label>
+                                    <input type="text" name="phone" class="form-control input-phone"
+                                        value="{{old('phone')}}">
+                                </div>
+                                <div class="col-xs-4">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" name="cpf" class="form-control input-cpf"
+                                        value="{{old('cpf')}}">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="thumbnail">Foto de perfil</label>
+                                    <input class="form-control" name="thumbnail" type="file">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label for="password">Senha</label>
+                                    <input type="password" name="password" class="form-control" id="password"
+                                        value="{{old('password')}}">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="password_confirmation">Confirmação de senha</label>
+                                    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation"
+                                        value="{{old('password_confirmation')}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
+                            <a href="{{route('admin.student.show')}}" class="">
+                                <button type="button" class="btn btn-secondary">Voltar</button>
+                            </a>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group row" >
-                  <div class="col-xs-12">
-                    <label for="email">E-mail</label>
-                    <input type="text" name="email" class="form-control" id="email" value="{{old('email')}}">
-                  </div>
-                </div>
-              <div class="form-group row">
-                <div class="col-sm-4">
-                    <label for="admin_type">Tipo de administrador</label>
-                    <select class="form-control" id="admin_type" name="admin_type" required>
-                      <option disabled selected>Escolha</option>
-                      <option value="1" <?php if(old('admin_type') == '1'){ echo 'selected'; } ?> >Administrador</option>
-                      <option value="2" <?php if(old('admin_type') == '2'){ echo 'selected'; } ?> >Colaborador</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-8">
-                    <label for="password">Senha</label>
-                    <input type="password" name="password" class="form-control" id="password" value="{{old('password')}}">
-                  </div>
-                </div>
-              </div>
-              <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Adicionar</button>
-              </div>
-            </form>
-          </div>
-        </section>
-        
-      </div>
-      <!-- /.row (main row) -->
+            </section>
+
+        </div>
+        <!-- /.row (main row) -->
 
     </section>
     <!-- /.content -->
-  </div>
+</div>
 
 @stop

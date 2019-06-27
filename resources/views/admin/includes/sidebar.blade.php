@@ -19,22 +19,47 @@
                       <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
                   </a>
               </li>
-              <li class="treeview">
-                  <a href="#">
-                      <i class="fa fa-circle-o"></i>
-                      <span>CADASTROS</span>
-                      <span class="pull-right-container">
-                          <i class="fa fa-angle-left pull-right"></i>
-                      </span>
+              <li {{ (Request::is('admin/ex-alunos') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/ex-alunos/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.student.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>EX-ALUNOS</span>
                   </a>
-                  <ul class="treeview-menu" style="display: none;">
-                      <li><a href="{{route('admin.student.show')}}"><i class="fa fa-circle-o"></i>EX-ALUNOS</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i>CATEGORIA PRODUTO</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i>PRODUTO</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i>FORNECEDOR</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i>UNIDADE DE MEDIDA</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i>COND. PAGAMENTO</a></li>
-                  </ul>
+              </li>
+              <li {{ (Request::is('admin/prestador') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/prestador/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.service_provider.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>PRESTADORES DE SERVIÇO</span>
+                  </a>
+              </li>
+              <li {{ (Request::is('admin/empresa') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/empresa/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.company.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>EMPRESA</span>
+                  </a>
+              </li>
+              <li {{ (Request::is('admin/cupom') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/cupom/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.coupon.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>CUPONS</span>
+                  </a>
+              </li>
+              <li {{ (Request::is('admin/link') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/link/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.link.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>LINKS ÚTEIS</span>
+                  </a>
+              </li>
+              <li {{ (Request::is('admin/ferramentas-marketing') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/ferramentas-marketing/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.tools-mkt.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>FERRAMENTAS DE MARKETING</span>
+                  </a>
+              </li>
+              <li {{ (Request::is('admin/conteudo-marketing') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/conteudo-marketing/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.content-mkt.show')}}">
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>CONTEÚDO DE MARKETING</span>
+                  </a>
               </li>
           </ul>
       </section>

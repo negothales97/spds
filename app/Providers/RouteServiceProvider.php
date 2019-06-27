@@ -39,6 +39,12 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapCompanyRoutes();
+
+        $this->mapService_providerRoutes();
+
+        $this->mapStudentRoutes();
+
         $this->mapAdminRoutes();
 
         //
@@ -60,6 +66,63 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/admin.php');
+        });
+    }
+
+    /**
+     * Define the "student" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapStudentRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'student', 'auth:student'],
+            'prefix' => 'student',
+            'as' => 'student.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/student.php');
+        });
+    }
+
+    /**
+     * Define the "service_provider" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapService_providerRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'service_provider', 'auth:service_provider'],
+            'prefix' => 'service_provider',
+            'as' => 'service_provider.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/service_provider.php');
+        });
+    }
+
+    /**
+     * Define the "company" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapCompanyRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'company', 'auth:company'],
+            'prefix' => 'company',
+            'as' => 'company.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/company.php');
         });
     }
 

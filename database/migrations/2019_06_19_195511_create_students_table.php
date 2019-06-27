@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -15,13 +14,15 @@ class CreateStudentsTable extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name', 191);
+            $table->string('email', 191)->unique();
+            $table->string('phone', 191);
             $table->string('password');
-            $table->string('phone');
-            $table->string('cpf');
-            $table->string('thumbnail');
-            $table->string('status');
+            $table->string('cpf', 191);
+            $table->string('thumbnail', 191)->nullable();
+            $table->string('status', 191)->default(0);
+            $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::drop('students');
     }
 }

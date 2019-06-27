@@ -31,9 +31,14 @@ button.btn-header {
 }
 a.act-list {
     text-decoration: none;
-    color: #8bc34a;
     font-size: 24px;
     margin-right: 5px;
+}
+a.act-list-blue {
+    color: #367FA9;
+}
+a.act-list-red {
+    color: #d9534f;
 }
 
 .box-auth {

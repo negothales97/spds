@@ -36,6 +36,21 @@ return [
     */
 
     'guards' => [
+        'company' => [
+            'driver' => 'session',
+            'provider' => 'companies',
+        ],
+
+        'service_provider' => [
+            'driver' => 'session',
+            'provider' => 'service_providers',
+        ],
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -70,6 +85,21 @@ return [
     */
 
     'providers' => [
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Company::class,
+        ],
+
+        'service_providers' => [
+            'driver' => 'eloquent',
+            'model' => App\ServiceProvider::class,
+        ],
+
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Student::class,
+        ],
+
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
@@ -102,6 +132,24 @@ return [
     */
 
     'passwords' => [
+        'companies' => [
+            'provider' => 'companies',
+            'table' => 'company_password_resets',
+            'expire' => 60,
+        ],
+
+        'service_providers' => [
+            'provider' => 'service_providers',
+            'table' => 'service_provider_password_resets',
+            'expire' => 60,
+        ],
+
+        'students' => [
+            'provider' => 'students',
+            'table' => 'student_password_resets',
+            'expire' => 60,
+        ],
+
         'admins' => [
             'provider' => 'admins',
             'table' => 'admin_password_resets',
