@@ -11,10 +11,10 @@ class CompanyController extends Controller
     public function show()
     {
         $company = auth()->guard('company')->user();
-        if($company->status == 0)
-        {
-            return redirect()->route('company.logout')->with('warning', 'O seu acesso consta bloqueado');
-        }
+        // if($company->status == 0)
+        // {
+        //     return redirect()->route('company.logout')->with('warning', 'O seu acesso consta bloqueado');
+        // }
         $company->mensality = convertMoneyUSAtoBrazil($company->mensality);
 
         return view('company.pages.company.show')->with('company', $company);

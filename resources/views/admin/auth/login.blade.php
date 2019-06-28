@@ -9,7 +9,18 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Faça login para acessar o painel</p>
-
+        @if(session()->has('warning'))
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <section class="col-sm-12">
+                <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{session('warning')}}
+                </div>
+            </section>
+        </div>
+        @endisset
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/') }}">
 
             {{ csrf_field() }}
