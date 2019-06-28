@@ -75,14 +75,26 @@
                         <input type="hidden" name="student_id" value="{{$student->id}}">
                         <div class="box-body">
                             <div class="form-group row box-nome">
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <label for="name">Nome</label>
                                     <input type="text" name="name" class="form-control" value="{{$student->name}}">
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <label for="email">E-mail</label>
                                     <input type="email" name="email" class="form-control" value="{{$student->email}}">
                                 </div>
+                                <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label for="occupation_area_id">Área de Ocupação</label>
+                                    <select name="occupation_area_id" class="form-control">
+                                        <option value="" disabled selected hidden>SELECIONE...</option>
+                                        @forelse($occupations as $occupation)
+                                        <option {{$occupation->id == $student->occupation_area_id ? "selected" : ""}} value="{{$occupation->id}}">{{$occupation->name}}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                </div>
+                            </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-xs-4">

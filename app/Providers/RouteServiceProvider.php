@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapFurnisherRoutes();
+
         $this->mapCompanyRoutes();
 
         $this->mapService_providerRoutes();
@@ -123,6 +125,25 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/company.php');
+        });
+    }
+
+    /**
+     * Define the "furnisher" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapFurnisherRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'furnisher', 'auth:furnisher'],
+            'prefix' => 'furnisher',
+            'as' => 'furnisher.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/furnisher.php');
         });
     }
 

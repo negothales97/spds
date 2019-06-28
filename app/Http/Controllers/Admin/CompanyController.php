@@ -74,4 +74,16 @@ class CompanyController extends Controller
         $company->delete();
         return redirect()->back()->with('info', 'Empresa Removida');
     }
+
+    public function password(Request $request)
+    {
+        $request->validate([
+            'password'  => "required|confirmed|min:6",
+        ]);
+        $company = Company::find($request->id);
+        
+        $company->password = bcrypt($request->password);
+        $company->save();
+        return redirect()->back()->with('success', 'Senha Atualizada');
+    }
 }

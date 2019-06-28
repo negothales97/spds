@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\{City, Country, Course, Formation, Level, State, Language, KnowledgeStudent,
-    Hierarchy, Professional, Student, LanguageStudent, Subknowledge, Knowledge};
+    Hierarchy, Professional, Student, LanguageStudent, Subknowledge, Knowledge, OccupationArea};
 
 class StudentController extends Controller
 {
@@ -30,7 +30,8 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('admin.pages.student.create');
+        return view('admin.pages.student.create')
+        ->with('occupations', OccupationArea::all());
     }
 
     public function store(Request $request)
@@ -56,6 +57,7 @@ class StudentController extends Controller
         ->with('languages_student', $languages_student)
         ->with('knowledges_student', $knowledges_student)
         ->with('cities', City::all())
+        ->with('occupations', OccupationArea::all())
         ->with('languages', Language::all())
         ->with('knowledges', Knowledge::all())
         ->with('subknowledges', Subknowledge::all())
@@ -85,9 +87,39 @@ class StudentController extends Controller
         return redirect()->back()->with('success', "Ex-Aluno Editado");
     }
 
-    public function delete()
+    public function delete(Student $student)
     {
+        foreach($student->formations as $data){
+            $data->delete();
+        }
 
+        foreach($student->professionals as $data){
+            $data->delete();
+        }
+
+        foreach($student->language_students as $data){
+            $data->delete();
+        }
+
+        foreach($student->knowledge_students as $data){
+            $data->delete();
+        }
+
+        $student->delete();
+        return redirect()->back()->with('info', "Ex-Aluno Removido");
+
+    }
+
+    public function password(Request $request)
+    {
+        $request->validate([
+            'password'  => "required|confirmed|min:6",
+        ]);
+        $student = auth()->guard('admin')->user();
+        
+        $student = Student::find($request->id);
+        $student->save();
+        return redirect()->back()->with('success', 'Senha Atualizada');
     }
 
     public function getCourses(Request $request)
@@ -114,6 +146,9 @@ class StudentController extends Controller
     private function validateThumbnail(Request $request)
     {
         if (isset($request->thumbnail)) {
+            $request->validate([
+                'thumbnail' => 'mimes:jpg,jpeg,png'
+            ]);
             $arq_img_name = imgValidate(
                                 '/images/thumbnail/',
                                 $request->file('thumbnail'),

@@ -218,6 +218,7 @@ $('.act-delete').on('click', function(e) {
         window.location.href = href;
     });
 });
+
 $('.act-formation-edit').on('click', function(e) {
     e.preventDefault();
     var formation_id    = $(this).data('formation-id');
@@ -309,6 +310,14 @@ $('.act-knowledge-edit').on('click', function(e) {
     $('#knowledgeEditModal form select[name="subknowledge_id"]').val(subknowledge_id);
     
     $('#knowledgeEditModal').modal('show');
+});
+$('.act-password').on('click', function(e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+
+    $('#passwordModal form input[name="id"]').val(id);   
+
+    $('#passwordModal').modal('show');
 });
 $('.act-formation').on('click', function(e) {
     e.preventDefault();

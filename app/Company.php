@@ -51,4 +51,14 @@ class Company extends Authenticatable
     {
         $this->notify(new CompanyResetPassword($token));
     }
+
+    public function city()
+    {
+        return $this->belongsTo('App\City');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('App\State'); 
+    }
 }

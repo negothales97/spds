@@ -82,7 +82,7 @@ function validateStudent(Request $request)
 
     if(!isset($request->student_id)){
         $request->validate([
-            'password'  => "required|confirmed",
+            'password'  => "required|confirmed|min:6",
             'email' => "required|unique:students",
         ]);
     }else{
@@ -93,8 +93,11 @@ function validateStudent(Request $request)
             ],
         ]);
     }
-
+    
     $data = $request->except('_token', 'student_id', 'thumbnail');
+    if(isset($request->password)){
+        $data['password'] =  bcrypt($request->password);
+    }
     return $data;
 }
 
@@ -108,20 +111,23 @@ function validateServices(Request $request)
         'description' => "required|max:2000",
     ]);
 
-    if(!isset($request->service_provider_id)){
+    if(!isset($request->furnisher_id)){
         $request->validate([
             'password'  => "required|confirmed",
-            'email' => "required|unique:service_providers",
+            'email' => "required|unique:furnishers",
         ]);
     }else{
         $request->validate([
             'email'               => [
                 'required',
-                Rule::unique('service_providers')->ignore($request->service_provider_id)
+                Rule::unique('furnishers')->ignore($request->furnisher_id)
             ],
         ]);
     }
-    $data = $request->except('_token', 'service_provider_id', 'logo');
+    $data = $request->except('_token', 'furnisher_id', 'logo');
+    if(isset($request->password)){
+        $data['password'] =  bcrypt($request->password);
+    }
     return $data;
 }
 
@@ -156,6 +162,9 @@ function validateCompany(Request $request)
     }
     $data = $request->except('_token', 'company_id');
     $data['mensality'] = convertMoneyBraziltoUSA($data['mensality']);
+    if(isset($request->password)){
+        $data['password'] =  bcrypt($request->password);
+    }
     return $data;
 }
 
@@ -198,6 +207,7 @@ function validateToolsMarketing(Request $request)
 {
     $request->validate([
         'title' => "required|max:191",
+        'document' => "required",
     ]);
     $hasFile = $request->hasFile('document');
     $data = $request->except('_token', 'tool_id');
@@ -211,6 +221,7 @@ function validateContentMarketing(Request $request)
 {
     $request->validate([
         'title' => "required|max:191",
+        'document' => "required",
     ]);
     $hasFile = $request->hasFile('document');
     $data = $request->except('_token', 'content_id');
@@ -281,6 +292,9 @@ function imgValidate($path, $file, $database, $database_file)
 
 function saveDocument(Request $request)
 {
+    $request->validate([
+        'document' => 'mimes:pdf,xlsx,xls,ppt,pptx,doc,docx,otp,odp,ods,odt,pps,psd'
+    ]);
     $hasFile = $request->hasFile('document');
     $fileIsValid = $request->file('document')->isValid();
     if($hasFile && $fileIsValid){
@@ -289,4 +303,5 @@ function saveDocument(Request $request)
     $upload = $file->store('arquivos');
     return $upload;
 }
+
 

@@ -86,7 +86,7 @@
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Filtrar</button>
-                <button type="button" class="btn btn-default clear-filters">Limpar</button>
+                <button type="submit" class="btn btn-default clear-filters">Limpar</button>
               </div>
             </form>
         </section>
@@ -98,7 +98,7 @@
         <section class="col-lg-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de clientes</h3>
+              <h3 class="box-title">Lista de Empresas</h3>
               <div class="box-tools">
                 <?php
 
@@ -164,6 +164,10 @@
                             <i class="fa fa-toggle-on" aria-hidden="true"></i>
                             @endif
                         </a>
+                        <a href="#" data-id="{{$company->id}}"
+                                            title="Alterar Senha" class="act-list act-list-blue act-password">
+                                            <i class="fa fa-lock" aria-hidden="true"></i></i>
+                                        </a>
                         <a href="{{ route('admin.company.edit', ['company' => $company])}}" title="Editar" class="act-list act-list-blue">
                           <i class="fa fa-pencil-square" aria-hidden="true"></i>
                         </a>
@@ -198,3 +202,46 @@
   </div>
 
 @stop
+
+@section('modals')
+<!--Alterar senha-->
+<div class="modal fade" tabindex="-1" role="dialog" id="passwordModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Alterar Senha</h4>
+            </div>
+            <form action="{{ route('admin.company.password')}}" method="POST">
+                <div class="modal-body">
+                    {{csrf_field()}}
+                    <input type="hidden" name="id" value="">
+                   
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="password">Senha</label>
+                            <input type="password" class="form-control" name="password" id="password">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="password_confirmation">Confirmação de Senha</label>
+                            <input type="password" class="form-control" name="password_confirmation" id="password_confirmation">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-default pull-left"
+                                data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.Alterar senha -->
+@endsection

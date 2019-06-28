@@ -18,7 +18,7 @@ class RedirectIfStudent
 	public function handle($request, Closure $next, $guard = 'student')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('student/home');
+	        return redirect('ex-aluno/mostrar');
 	    }
 
 	    return $next($request);

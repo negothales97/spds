@@ -75,14 +75,14 @@
               <div class="box-body">
                 <div class="row">
                   <div class="col-sm-12">
-                    <label>Código Cupom</label>
-                    <input type="text" name="code" value="{{request('code')}}" class="form-control">
+                    <label>Título</label>
+                    <input type="text" name="title" value="{{request('title')}}" class="form-control">
                   </div>
                 </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Filtrar</button>
-                <button type="button" class="btn btn-default clear-filters">Limpar</button>
+                <button type="submit" class="btn btn-default clear-filters">Limpar</button>
               </div>
             </form>
         </section>
@@ -94,7 +94,7 @@
         <section class="col-lg-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de clientes</h3>
+              <h3 class="box-title">Lista de Ferramentas de Marketing</h3>
               <div class="box-tools">
                 <?php
 
@@ -142,6 +142,7 @@
                 <thead>
                   <tr>
                     <th>Título</th>
+                    <th>Arquivo</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
@@ -149,6 +150,7 @@
                   @forelse($tools as $tool)
                     <tr>
                       <td>{{$tool->title}}</td>
+                      <td><a href="{{url("storage/{$tool->document}")}}" download> {{$tool->title}}</a></td>
                       <td>
                         <a href="{{ route('admin.tools-mkt.edit', ['tool' => $tool])}}" title="Editar" class="act-list act-list-blue">
                           <i class="fa fa-pencil-square" aria-hidden="true"></i>
@@ -167,6 +169,7 @@
                 <tfoot>
                   <tr>
                     <th>Título</th>
+                    <th>Arquivo</th>
                     <th>Ações</th>
                   </tr>
                 </tfoot>   

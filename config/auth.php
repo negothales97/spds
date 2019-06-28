@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'furnisher' => [
+            'driver' => 'session',
+            'provider' => 'furnishers',
+        ],
+
         'company' => [
             'driver' => 'session',
             'provider' => 'companies',
@@ -85,6 +90,11 @@ return [
     */
 
     'providers' => [
+        'furnishers' => [
+            'driver' => 'eloquent',
+            'model' => App\Furnisher::class,
+        ],
+
         'companies' => [
             'driver' => 'eloquent',
             'model' => App\Company::class,
@@ -132,6 +142,12 @@ return [
     */
 
     'passwords' => [
+        'furnishers' => [
+            'provider' => 'furnishers',
+            'table' => 'furnisher_password_resets',
+            'expire' => 60,
+        ],
+
         'companies' => [
             'provider' => 'companies',
             'table' => 'company_password_resets',

@@ -82,7 +82,7 @@
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Filtrar</button>
-                <button type="button" class="btn btn-default clear-filters">Limpar</button>
+                <button type="submit" class="btn btn-default clear-filters">Limpar</button>
               </div>
             </form>
         </section>
@@ -94,7 +94,7 @@
         <section class="col-lg-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de clientes</h3>
+              <h3 class="box-title">Lista de Cupons</h3>
               <div class="box-tools">
                 <?php
 

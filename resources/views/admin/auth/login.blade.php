@@ -10,7 +10,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">Faça login para acessar o painel</p>
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/login') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/') }}">
 
             {{ csrf_field() }}
 
@@ -37,20 +37,11 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-8">
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
-                </div>
-                <!-- /.col -->
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="button" class="btn  btn-block btn-flat">
-                        <a href="{{url('admin/register')}}" class="">
-                            Registrar
-                        </a>
-                    </button>
                 </div>
                 <!-- /.col -->
             </div>

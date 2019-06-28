@@ -8,6 +8,7 @@
               </div>
               <div class="pull-left info">
                   <p>{{Auth::guard('admin')->user()->name}}</p>
+                  <span><small>Administrador</small></span>
               </div>
           </div>
           <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -15,7 +16,7 @@
               <li class="header">MENU PRINCIPAL</li>
               <li {{ (Request::is('admin/dashboard') ? 'class=active' : '') }}
                   {{ (Request::is('admin/dashboard') ? 'class=active' : '') }}>
-                  <a href="#">
+                  <a href="{{url('admin/dashboard')}}">
                       <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
                   </a>
               </li>
@@ -27,38 +28,44 @@
               </li>
               <li {{ (Request::is('admin/prestador') ? 'class=active' : '') }}
                   {{ (Request::is('admin/prestador/*') ? 'class=active' : '') }}>
-                  <a href="{{route('admin.service_provider.show')}}">
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>PRESTADORES DE SERVIÇO</span>
+                  <a href="{{route('admin.furnisher.show')}}">
+                  <i class="fa fa-briefcase" aria-hidden="true"></i> <span>PRESTADORES DE SERVIÇO</span>
                   </a>
               </li>
               <li {{ (Request::is('admin/empresa') ? 'class=active' : '') }}
                   {{ (Request::is('admin/empresa/*') ? 'class=active' : '') }}>
                   <a href="{{route('admin.company.show')}}">
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>EMPRESA</span>
+                  <i class="fa fa-building" aria-hidden="true"></i> <span>EMPRESA</span>
                   </a>
               </li>
               <li {{ (Request::is('admin/cupom') ? 'class=active' : '') }}
                   {{ (Request::is('admin/cupom/*') ? 'class=active' : '') }}>
                   <a href="{{route('admin.coupon.show')}}">
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>CUPONS</span>
+                  <i class="fa fa-ticket" aria-hidden="true"></i> <span>CUPONS</span>
                   </a>
               </li>
               <li {{ (Request::is('admin/link') ? 'class=active' : '') }}
                   {{ (Request::is('admin/link/*') ? 'class=active' : '') }}>
                   <a href="{{route('admin.link.show')}}">
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>LINKS ÚTEIS</span>
+                  <i class="fa fa-info" aria-hidden="true"></i> <span>LINKS ÚTEIS</span>
                   </a>
               </li>
               <li {{ (Request::is('admin/ferramentas-marketing') ? 'class=active' : '') }}
                   {{ (Request::is('admin/ferramentas-marketing/*') ? 'class=active' : '') }}>
                   <a href="{{route('admin.tools-mkt.show')}}">
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>FERRAMENTAS DE MARKETING</span>
+                  <i class="fa fa-cogs" aria-hidden="true"></i> <span>FERRAMENTAS DE MARKETING</span>
                   </a>
               </li>
               <li {{ (Request::is('admin/conteudo-marketing') ? 'class=active' : '') }}
                   {{ (Request::is('admin/conteudo-marketing/*') ? 'class=active' : '') }}>
                   <a href="{{route('admin.content-mkt.show')}}">
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> <span>CONTEÚDO DE MARKETING</span>
+                  <i class="fa fa-folder-open-o" aria-hidden="true"></i> <span>CONTEÚDO DE MARKETING</span>
+                  </a>
+              </li>
+              <li {{ (Request::is('admin/configuracao') ? 'class=active' : '') }}
+                  {{ (Request::is('admin/configuracao/*') ? 'class=active' : '') }}>
+                  <a href="{{route('admin.configuration')}}">
+                  <i class="fa fa-folder-open-o" aria-hidden="true"></i> <span>CONFIGURAÇÕES</span>
                   </a>
               </li>
           </ul>

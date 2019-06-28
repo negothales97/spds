@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->string('name', 191);
             $table->string('email', 191)->unique();
             $table->string('phone', 191);
+            $table->integer('occupation_area_id');
             $table->string('password');
             $table->string('cpf', 191);
             $table->string('thumbnail', 191)->nullable();

@@ -60,13 +60,23 @@
                         {{csrf_field()}}
                         <div class="box-body">
                             <div class="form-group row box-nome">
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <label for="name">Nome</label>
                                     <input type="text" name="name" class="form-control" value="{{old('name')}}">
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-4">
                                     <label for="email">E-mail</label>
                                     <input type="email" name="email" class="form-control" value="{{old('email')}}">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="occupation_area_id">Área de Ocupação</label>
+                                    <select name="occupation_area_id" class="form-control">
+                                        <option value="" disabled selected hidden>SELECIONE...</option>
+                                        @forelse($occupations as $occupation)
+                                        <option {{$occupation->id == old('occupation_area_id') ? "selected" : ""}} value="{{$occupation->id}}">{{$occupation->name}}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">

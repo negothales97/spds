@@ -11,7 +11,7 @@
     <section class="content-header">
         <div class="row">
             <div class="col-sm-6">
-                <h1>Editar Prestador de Serviço</h1>
+                <h1>Editar Empresa</h1>
             </div>
         </div>
     </section>

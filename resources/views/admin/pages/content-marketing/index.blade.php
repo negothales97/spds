@@ -94,7 +94,7 @@
         <section class="col-lg-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Lista de clientes</h3>
+              <h3 class="box-title">Lista de Conteúdos de Marketing</h3>
               <div class="box-tools">
                 <?php
 
@@ -149,6 +149,7 @@
                   @forelse($contents as $content)
                     <tr>
                       <td>{{$content->title}}</td>
+                      <td><a href="{{url("storage/{$content->document}")}}" download> {{$content->title}}</a></td>
                       <td>
                         <a href="{{ route('admin.content-mkt.edit', ['content' => $content])}}" title="Editar" class="act-list act-list-blue">
                           <i class="fa fa-pencil-square" aria-hidden="true"></i>
