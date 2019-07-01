@@ -4,11 +4,11 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <b>SPDS</b>
+        <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-logo">
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Faça login para acessar o painel</p>
+        <p class="login-box-msg">Login Administrativo</p>
         @if(session()->has('warning'))
         <!-- Main row -->
         <div class="row">
@@ -21,32 +21,34 @@
             </section>
         </div>
         @endisset
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/') }}">
+        <form role="form" method="POST" action="{{ url('/admin/') }}">
 
             {{ csrf_field() }}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group has-feedback">
+                        <input name="email" type="email" class="form-control" placeholder="E-mail"
+                            value="{{ old('email') }}" required autofocus>
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
 
-            <div class="form-group has-feedback">
-                <input name="email" type="email" class="form-control" placeholder="E-mail" value="{{ old('email') }}"
-                    required autofocus>
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                        @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                        @endif
+                    </div>
 
-                @if ($errors->has('email'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                @endif
+                    <div class="form-group has-feedback">
+                        <input name="password" type="password" class="form-control" placeholder="Senha" required>
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        @if ($errors->has('password'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group has-feedback">
-                <input name="password" type="password" class="form-control" placeholder="Senha" required>
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                @if ($errors->has('password'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                @endif
-            </div>
-
             <div class="row">
                 <div class="col-xs-8">
                 </div>

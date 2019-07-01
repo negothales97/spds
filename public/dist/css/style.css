@@ -79,6 +79,16 @@ a.act-list-red {
     outline: none;
 }
 
+.img-logo{
+    width: 150px;    
+}
+.login-box{
+    margin: 0 auto;
+}
+
+.help-block{
+    text-align: center;
+}
 .box-auth button {
     width: 100%;
     padding: 12px;

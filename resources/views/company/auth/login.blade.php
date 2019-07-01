@@ -4,24 +4,17 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <b>LOGIN EMPRESA</b>
+        <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-logo">
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Faça login para acessar o painel</p>
+        <p class="login-box-msg">Login Empresa</p>
         @if(session()->has('warning'))
-        <!-- Main row -->
-        <div class="row">
-            <!-- Left col -->
-            <section class="col-sm-12">
-                <div class="alert alert-warning alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {{session('warning')}}
-                </div>
-            </section>
-        </div>
-        @endisset
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/company/') }}">
+        <span class="help-block">
+            <strong>{{session('warning')}}</strong>
+        </span>
+        @endif
+        <form role="form" method="POST" action="{{ url('/company/') }}">
 
             {{ csrf_field() }}
 

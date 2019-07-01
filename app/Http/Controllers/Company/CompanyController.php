@@ -8,13 +8,13 @@ use App\{City, State, Coupon, Link, ToolsMarketing, ContentMarketing, Student, F
 
 class CompanyController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
         $company = auth()->guard('company')->user();
-        // if($company->status == 0)
-        // {
-        //     return redirect()->route('company.logout')->with('warning', 'O seu acesso consta bloqueado');
-        // }
+        if($company->status == 0){
+            $request->session()->flush();
+            return redirect()->route('company.login')->with('warning', 'O seu acesso não consta liberado');
+        }
         $company->mensality = convertMoneyUSAtoBrazil($company->mensality);
 
         return view('company.pages.company.show')->with('company', $company);
@@ -108,6 +108,7 @@ class CompanyController extends Controller
                 $students = $students->where('occupation_area_id', request('occupation_area_id'));
             }
         }
+        $students = $students->where('status', 1);
 
         $students = $students->orderBy('name', 'asc')->paginate(10);
         return view('company.pages.search.student')
@@ -134,6 +135,7 @@ class CompanyController extends Controller
                 $furnishers = $furnishers->where('occupation_area_id', request('occupation_area_id'));
             }
         }
+        $furnishers = $furnishers->where('status', 1);
 
         $furnishers = $furnishers->orderBy('name', 'asc')->paginate(10);
         return view('company.pages.search.furnisher')

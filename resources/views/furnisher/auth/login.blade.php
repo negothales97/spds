@@ -4,13 +4,18 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <b>LOGIN PRESTADOR</b>
+        <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-logo">
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Faça login para acessar o painel</p>
+        <p class="login-box-msg">Login Prestador de Serviço</p>
+        @if(session()->has('warning'))
+        <span class="help-block">
+            <strong>{{session('warning')}}</strong>
+        </span>
+        @endif
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/furnisher/') }}">
+        <form role="form" method="POST" action="{{ url('/furnisher/') }}">
 
             {{ csrf_field() }}
 

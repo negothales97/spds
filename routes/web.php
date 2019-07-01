@@ -194,10 +194,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 // Student Autenticable Routes
 Route::group(['prefix' => 'student'], function () {
-  Route::get('/', 'StudentAuth\LoginController@showLoginForm')->name('login');
+  Route::get('/', 'StudentAuth\LoginController@showLoginForm')->name('student.login');
   Route::post('/', 'StudentAuth\LoginController@login');
   Route::post('/logout', 'StudentAuth\LoginController@logout')->name('logout');
-  Route::get('/logout', 'StudentAuth\LoginController@logout')->name('student.logout');
 
   Route::post('/password/email', 'StudentAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'StudentAuth\ResetPasswordController@reset')->name('password.email');
@@ -207,10 +206,9 @@ Route::group(['prefix' => 'student'], function () {
 
 // Company Autenticable Routes
 Route::group(['prefix' => 'company'], function () {
-  Route::get('/', 'CompanyAuth\LoginController@showLoginForm')->name('login');
+  Route::get('/', 'CompanyAuth\LoginController@showLoginForm')->name('company.login');
   Route::post('/', 'CompanyAuth\LoginController@login');
   Route::post('/logout', 'CompanyAuth\LoginController@logout')->name('logout');
-  Route::get('/logout', 'CompanyAuth\LoginController@logout')->name('company.logout');
 
   Route::post('/password/email', 'CompanyAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'CompanyAuth\ResetPasswordController@reset')->name('password.email');
@@ -223,10 +221,9 @@ Route::post('cidades/', 'Admin\StudentController@getCities')->name('get-cities')
 Route::post('conhecimentos/', 'Admin\StudentController@getSubknowledges')->name('get-subknowledges');
 
 Route::group(['prefix' => 'furnisher'], function () {
-  Route::get('/', 'FurnisherAuth\LoginController@showLoginForm')->name('login');
+  Route::get('/', 'FurnisherAuth\LoginController@showLoginForm')->name('furnisher.login');
   Route::post('/', 'FurnisherAuth\LoginController@login');
   Route::post('/logout', 'FurnisherAuth\LoginController@logout')->name('logout');
-  Route::get('/logout', 'FurnisherAuth\LoginController@logout')->name('furnisher.logout');
 
   Route::post('/password/email', 'FurnisherAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'FurnisherAuth\ResetPasswordController@reset')->name('password.email');

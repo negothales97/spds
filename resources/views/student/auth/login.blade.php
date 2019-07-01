@@ -4,13 +4,18 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <b>LOGIN EX-ALUNO</b>
+        <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-logo">
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Faça login para acessar o painel</p>
+        <p class="login-box-msg">Login Ex-Aluno</p>
+        @if(session()->has('warning'))
+        <span class="help-block">
+            <strong>{{session('warning')}}</strong>
+        </span>
+        @endif
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/student/') }}">
+        <form role="form" method="POST" action="{{ url('/student/') }}">
 
             {{ csrf_field() }}
 

@@ -8,9 +8,13 @@ use App\{Student, Formation, Professional,LanguageStudent, KnowledgeStudent, Cit
 
 class StudentController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
         $student = auth()->guard('student')->user();
+        if($student->status == 0){
+            $request->session()->flush();
+            return redirect()->route('student.login')->with('warning', 'O seu acesso não consta liberado');
+        }
         return view('student.pages.student.show')->with('student', $student);
     }
 
