@@ -311,14 +311,6 @@ $('.act-knowledge-edit').on('click', function(e) {
     
     $('#knowledgeEditModal').modal('show');
 });
-$('.act-password').on('click', function(e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-
-    $('#passwordModal form input[name="id"]').val(id);   
-
-    $('#passwordModal').modal('show');
-});
 $('.act-formation').on('click', function(e) {
     e.preventDefault();
     var student_id = $(this).data('student_id');
@@ -352,6 +344,16 @@ $('.act-knowledge').on('click', function(e) {
     $('#knowledgeModal form input[name="student_id"]').val(student_id);   
 
     $('#knowledgeModal').modal('show');
+});
+
+
+$('.act-password').on('click', function(e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+
+    $('#passwordModal form input[name="id"]').val(id);   
+
+    $('#passwordModal').modal('show');
 });
 /**
  * Limpar os filtros

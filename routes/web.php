@@ -216,9 +216,6 @@ Route::group(['prefix' => 'company'], function () {
   Route::get('/password/reset/{token}', 'CompanyAuth\ResetPasswordController@showResetForm');
 });// ./Company Autenticable Routes
 
-Route::post('cursos/', 'Admin\StudentController@getCourses')->name('get-courses');
-Route::post('cidades/', 'Admin\StudentController@getCities')->name('get-cities');
-Route::post('conhecimentos/', 'Admin\StudentController@getSubknowledges')->name('get-subknowledges');
 
 Route::group(['prefix' => 'furnisher'], function () {
   Route::get('/', 'FurnisherAuth\LoginController@showLoginForm')->name('furnisher.login');
@@ -230,3 +227,8 @@ Route::group(['prefix' => 'furnisher'], function () {
   Route::get('/password/reset', 'FurnisherAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'FurnisherAuth\ResetPasswordController@showResetForm');
 });
+
+
+Route::post('cursos/', 'Admin\StudentController@getCourses')->name('get-courses');
+Route::post('cidades/', 'Admin\StudentController@getCities')->name('get-cities');
+Route::post('conhecimentos/', 'Admin\StudentController@getSubknowledges')->name('get-subknowledges');

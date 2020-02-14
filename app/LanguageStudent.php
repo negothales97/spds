@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class LanguageStudent extends Model
 {
     protected $fillable = [
-        'language_id', 'level', 'student_id'
+        'language_id',
+        'level',
+        'student_id'
     ];
 
     public function language()
